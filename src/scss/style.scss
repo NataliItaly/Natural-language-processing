@@ -1,0 +1,28 @@
+@import "header.css";
+@import "form.css";
+@import "footer.css";
+
+$text-color: #fff;
+$primary-color: rgb(148, 158, 233);
+$secondary-color: rgb(238, 174, 202);
+$terziary-color: rgb(174 187 238);
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: $text-color;
+}
+
+body {
+  background: $secondary-color;
+  background: radial-gradient(circle, $secondary-color 0%, $primary-color 100%);
+  padding: 50px 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
