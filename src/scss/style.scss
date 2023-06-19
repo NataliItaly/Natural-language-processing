@@ -1,11 +1,7 @@
-@import "header.css";
-@import "form.css";
-@import "footer.css";
-
-$text-color: #fff;
-$primary-color: rgb(148, 158, 233);
-$secondary-color: rgb(238, 174, 202);
-$terziary-color: rgb(174 187 238);
+@import "variables.scss";
+@import "header.scss";
+@import "form.scss";
+@import "footer.scss";
 
 * {
   margin: 0;
@@ -18,7 +14,7 @@ $terziary-color: rgb(174 187 238);
 
 body {
   background: $secondary-color;
-  background: radial-gradient(circle, $secondary-color 0%, $primary-color 100%);
+  background: radial-gradient(circle, $secondary-color 0%, $primary-color 85%);
   padding: 50px 0;
 }
 

@@ -1,9 +1,12 @@
+@import "variables.scss";
+
 .header {
   max-width: 700px;
   margin: 0 auto 20px;
-}
 
-.header__title {
-  font-weight: normal;
-  text-align: center;
+  &__title {
+    font-weight: normal;
+    text-align: center;
+    text-shadow: $text-shadow;
+  }
 }
