@@ -29,7 +29,7 @@ const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
 module.exports = {
   context: path.resolve(__dirname, "src"),
   mode: "development",
-  entry: "./index.js",
+  entry: "./client/js/index.js",
   output: {
     filename: filename("js"),
     path: path.resolve(__dirname, "dist"),
@@ -41,7 +41,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: "./index.html",
+      template: "./client/index.html",
       minify: {
         collapseWhitespace: !isDev,
       },
@@ -50,7 +50,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "src/favicon.png"),
+          from: path.resolve(__dirname, "src/client/favicon.png"),
           to: path.resolve(__dirname, "dist"),
         },
       ],
@@ -68,6 +68,16 @@ module.exports = {
       {
         test: /\.s[ca]ss$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [["@babel/preset-env", { targets: "defaults" }]],
+          },
+        },
       },
     ],
   },
