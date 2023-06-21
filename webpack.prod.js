@@ -4,55 +4,25 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
-const TerserWebpackPlugin = require("terser-webpack-plugin");
-//const WorkboxPlugin = require("workbox-webpack-plugin");
-
-const isDev = process.env.NODE_ENV === "development";
-console.log("isDev: " + isDev);
-
-const optimization = () => {
-  const config = {
-    splitChunks: {
-      chunks: "all",
-    },
-  };
-  if (!isDev) {
-    config.minimizer = [
-      new TerserWebpackPlugin(),
-      new CssMinimizerWebpackPlugin(),
-    ];
-  }
-  return config;
-};
-
-const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
-  mode: "development",
+  mode: "production",
   entry: "./client/js/index.js",
   output: {
-    filename: filename("js"),
+    filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
   },
-  optimization: optimization(),
   devServer: {
     port: 8000,
-    static: {
-      directory: path.resolve(__dirname, "dist"),
-    },
-    devMiddleware: {
-      index: "index.html",
-      writeToDisk: true,
-    },
     open: true,
-    hot: isDev,
+    hot: false,
   },
   plugins: [
     new HTMLWebpackPlugin({
       template: "./client/index.html",
       minify: {
-        collapseWhitespace: !isDev,
+        collapseWhitespace: true,
       },
     }),
     new CleanWebpackPlugin(),
@@ -65,7 +35,7 @@ module.exports = {
       ],
     }),
     new MiniCssExtractPlugin({
-      filename: filename("css"),
+      filename: "[name].[contenthash].css",
     }),
   ],
   module: {

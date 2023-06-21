@@ -8,12 +8,14 @@ The motive of this project is to have you a taste of the environment and tools y
 
 We will build a web tool that allows users to run Natural Language Processing (NLP) on articles or blogs found on other websites. NLP is the ability of an application to understand the human language, written or oral.
 
-You don't have to worry about NLP, because we will make use of an external api called Aylien to interact with their NLP system. This tool will help us classify the information available in the article, like whether the content is subjective (opinion) or objective (fact-based) and whether it is positive, neutral, or negative in tone.
-
-### P.S. здесь везде они имеют в виду API Aylien, но там только на 2 недели free, в чате написали, что можно пользоваться Meaning Cloud:
+you will be using the MeaningCloud Sentiment Analysis API for this project.
 
 https://www.meaningcloud.com/
-там бесплатная версия и 20 000 вызовов в месяц.
+
+## Login
+
+email: alessiaveter@gmail.com
+password: Se27112015?
 
 ## Following are the project prerequisites:
 
@@ -21,13 +23,9 @@ Webserver - Node
 Web application framework for routing - Express
 Build tool - Webpack. Using webpack, we will set up the app to have dev and prod environments, each with their own set of tools and commands.
 External script - Service Worker
-External API - Aylien
+External API - Meaning Cloud
 Introduction to Natural Language Processing
 NLP is a subset of AI that provides computers ability to process or interact with natural human speech. In NLP, machine learning and deep learning are used on massive amounts of data to obtain the rules and understanding of nuance in human speech.
-
-## NLP on Human Voice
-
-For example, everyone who has used Alexa or Google Assistant or other voice command systems knows that these devices are always improving, by collecting and interpreting voice data. Verbal interactions can be incredibly hard to decipher. Sarcasm, for instance, requires understanding not just words and grammar but the tone as well, and regional accents and ways of saying things have to be taken into account, not to mention coverage for all the major languages.
 
 ## NLP on Text
 
@@ -39,25 +37,54 @@ It requires a vast amount of knowledge from machine learning, deep learning, AI,
 
 ## API
 
-The app should make a successful call to the API on form submission. If this is successful, the API keys and response handling were done correctly. You can check that the API keys are found in server.js or a similar node file. It is not acceptable for an API key to be set in a client-facing file (like index.js)
+**_ The app should make a successful call to the API on form submission. If this is successful, the API keys and response handling were done correctly. You can check that the API keys are found in server.js or a similar node file. It is not acceptable for an API key to be set in a client-facing file (like index.js) _**
 
 Information from the API response must show up in the view. It is not enough for the response to be logged to the console or saved in js, etc..
 
-## Tip: These are some data points that should be visible:
+Tip: These are some data points that should be visible:
 
 polarity: (positive/'negative')
 subjectivity: ('subjective', factual)
 text: a text snippet from the article
 
-## Offline Functionality
+## Environment Variables
+
+Next, in server/server.js, you need to declare your API credentials, which will look something like this:
+
+var textapi = new meaningCloud({
+application_key: "your-key"
+});
+
+Use npm to install the dotenv package - npm install dotenv This will allow us to use environment variables we set in a new file
+Create a new .env file in the root of your project.
+Fill the .env file with your API keys like this:
+API_KEY=\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***
+
+    1. Add this code to the very top of your `server/server.js file:
+
+const dotenv = require('dotenv');
+dotenv.config();
+If you want to refer the environment variables, try putting a prefix process.env. in front of the variable name in the server/index.js file, an example might look like this:
+console.log(`Your API key is ${process.env.API_KEY}`);
+
+var textapi = new meaningCloud({
+application_key: process.env.API_KEY
+});
+
+## Project Enhancement
+
+At the current stage, make enhancement in your project code to ensure most of the requirements as mentioned in the project rubric are met. In addition, parse the response body to dynamically fill content on the page.
+
+Only the rubric requirements related to "Offline Functionality" and "Testing" criteria should remain for the next stages.
 
 ### The project must have set up service workers:
 
 Workbox plugin is implemented in webpack.prod.js
 The service is called from index.html
-Testing
 
-### Check the project has Jest installed and npm run test script is implemented to run Jest.
+### Testing
+
+Check the project has Jest installed and npm run test script is implemented to run Jest.
 
 Every src/js file has at least one unit test.
 All tests have passed.

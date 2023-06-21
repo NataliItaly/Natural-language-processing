@@ -4,8 +4,8 @@
   "description": "Natural Language Processing App",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack serve --mode development --hot",
-    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "dev": "webpack --config webpack.dev.js",
+    "prod": "webpack --config webpack.prod.js",
     "start": "node src/server/server.js"
   },
   "keywords": [],
