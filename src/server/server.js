@@ -1,17 +1,16 @@
-var path = require("path");
+const path = require("path");
 const express = require("express");
-
 const app = express();
+const fs = require("fs");
 
-app.use(express.static("src/client"));
-
-console.log(__dirname);
+app.use("", express.static(path.resolve(__dirname, "../../dist")));
 
 app.get("/", function (req, res) {
-  res.sendFile("client/index.html", { root: __dirname + "/.." });
+  const pathToHtmlFile = path.resolve(__dirname, "../../dist/index.html");
+  const contentFromHtmlFile = fs.readFileSync(pathToHtmlFile, "utf-8");
+  res.send(contentFromHtmlFile);
 });
 
-// designates what port the app will listen to for incoming requests
 app.listen(8080, function () {
   console.log("Example app listening on port 8080!");
 });

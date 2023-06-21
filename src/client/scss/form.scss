@@ -25,12 +25,36 @@
       background: radial-gradient(
         circle,
         rgb(243 170 237) 0%,
-        $terziary-color 100%
+        $terziary-color 5%
       );
       color: inherit;
       text-transform: uppercase;
       cursor: pointer;
       text-shadow: $text-shadow;
+      transition: 0.4s;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        background: radial-gradient(
+          circle,
+          rgb(243 170 237) 0%,
+          $terziary-color 100%
+        );
+        opacity: 0.4;
+        transition: 0.4s;
+      }
+
+      &:hover::after {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 
@@ -38,9 +62,18 @@
     height: 200px;
     overflow-y: auto;
     padding: 10px;
+    border-radius: 15px;
   }
 
   &__text {
     background-color: $terziary-color;
+  }
+
+  &__result {
+    opacity: 0;
+
+    &_visible {
+      opacity: 1;
+    }
   }
 }
