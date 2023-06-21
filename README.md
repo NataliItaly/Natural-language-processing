@@ -1,6 +1,3 @@
- "dev": "cross-env NODE_ENV=development webpack serve --mode development --hot",
-    "prod": "cross-env NODE_ENV=production webpack --mode production",
-
 # This site is live at
 
 https://natural-language-processing-krylova.netlify.app/
