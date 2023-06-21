@@ -1,6 +1,6 @@
 # This site is live at
 
-[https://weather-app-project-3-udacity.netlify.app/]
+https://natural-language-processing-krylova.netlify.app/
 
 # Project Specification
 
