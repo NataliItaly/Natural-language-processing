@@ -1,4 +1,5 @@
 import analizeText from "./api";
+
 const formInput = document.querySelector("#text-input");
 const formBtn = document.querySelector("#form-submit");
 const formOut = document.querySelector("#form-out");
