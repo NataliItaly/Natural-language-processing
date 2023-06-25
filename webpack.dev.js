@@ -7,9 +7,10 @@ const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 
 module.exports = {
+  context: path.resolve(__dirname, "src"),
   mode: "development",
   devtool: "source-map",
-  entry: "./src/client/js/index.js",
+  entry: "./client/js/index.js",
   output: {
     filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
@@ -21,7 +22,7 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: "./src/client/index.html",
+      template: "./client/index.html",
       minify: {
         collapseWhitespace: false,
       },
