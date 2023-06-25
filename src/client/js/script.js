@@ -1,10 +1,3 @@
-const form = document.querySelector("#form");
-const formInput = document.querySelector("#url");
-const polarityElement = document.getElementById("polarity");
-const subjectivityElement = document.getElementById("subjectivity");
-const textElement = document.getElementById("text");
-const submitButton = document.querySelector("#form-submit");
-
 //------------------------ validation of url --------------------------
 const validateUrl = (url) => {
   const urlRegex = /^(http|https):\/\/[^ "]+$/;
