@@ -9,7 +9,7 @@ const subjectivityElement = document.getElementById("subjectivity");
 const textElement = document.getElementById("text");
 const submitButton = document.querySelector("#form-submit");
 
-analyzeForm.addEventListener("submit", handleFormSubmission);
+form.addEventListener("submit", handleFormSubmission);
 
 //-------------Function to get the article URL from the DOM--------------
 const getArticleUrl = () => formInput.value;
@@ -55,6 +55,7 @@ export function handleFormSubmission(event) {
   analyzeArticle(articleUrl)
     .then(({ data }) => {
       displayResponseData(data);
+      console.log(data);
     })
     .catch((error) => {
       displayError(error);

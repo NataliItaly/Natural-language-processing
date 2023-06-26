@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
+const WorkboxPlugin = require("workbox-webpack-plugin");
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
@@ -12,6 +13,8 @@ module.exports = {
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
+    libraryTarget: "var",
+    library: "Client",
   },
   devServer: {
     port: 8000,
@@ -37,6 +40,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
     }),
+    new WorkboxPlugin.GenerateSW(),
   ],
   module: {
     rules: [

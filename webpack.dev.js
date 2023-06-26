@@ -3,8 +3,6 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
-const TerserWebpackPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   context: path.resolve(__dirname, "src"),
@@ -16,16 +14,13 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   devServer: {
-    port: 3000,
+    port: 8080,
     open: true,
     hot: true,
   },
   plugins: [
     new HTMLWebpackPlugin({
       template: "./client/index.html",
-      minify: {
-        collapseWhitespace: false,
-      },
     }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
